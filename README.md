@@ -1,7 +1,7 @@
 # Nuture-Me-Hub
 Online Mother Child Antenatal Milestones
 
-![Alt text]([http://full/path/to/img.jpg](https://pbs.twimg.com/media/FO-QD_sXoAUmrxy.jpg:large) "Optional title")
+![Alt text](https://signpost-kenya.zendesk.com/hc/article_attachments/4494450361239/anc.png "mother-child-care)
 
 Online Mother Record System
 Empowering Maternal Healthcare through Digital Transformation
