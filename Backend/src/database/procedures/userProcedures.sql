@@ -20,7 +20,7 @@ END
 
 -- USE Nuture;
 SELECT * FROM Users
-
+-- DROP PROCEDURE registerUser
 
 -- CREATE PROCEDURE loginUser(
 --     @email VARCHAR(300),

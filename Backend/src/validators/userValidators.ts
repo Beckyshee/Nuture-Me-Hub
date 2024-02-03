@@ -1,22 +1,22 @@
 import joi from "joi";
 
-//register validation
+// Register validation
 export const userRegisterValidationSchema = joi.object({
-  name: joi.string().required().min(2).max(30),
+  fullName: joi.string().required().min(2).max(30),
   email: joi.string().email({
     minDomainSegments: 2,
     tlds: {
       allow: ["ke", "com"],
     },
   }),
-
   password: joi
     .string()
     .required()
     .pattern(new RegExp("^[a-zA-Z0-9!@#%$&*()]{0,30}$")),
+  phone: joi.string().required(),
 });
 
-//Login validation
+// Login validation
 export const userLoginValidationSchema = joi.object({
   email: joi.string().email({
     minDomainSegments: 2,
@@ -30,8 +30,7 @@ export const userLoginValidationSchema = joi.object({
     .pattern(new RegExp("^[a-zA-Z0-9!@#%$&*()]{0,30}$")),
 });
 
-
-//password reset request validation
+// Password reset request validation
 export const passwordResetRequestValidationSchema = joi.object({
   email: joi.string().email({
     minDomainSegments: 2,
@@ -41,7 +40,7 @@ export const passwordResetRequestValidationSchema = joi.object({
   }),
 });
 
-//password reset validation
+// Password reset validation
 export const passwordResetValidationSchema = joi.object({
   email: joi.string().email({
     minDomainSegments: 2,

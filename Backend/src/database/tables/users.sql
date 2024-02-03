@@ -14,3 +14,5 @@ USE Nuture;
 SELECT * FROM Users WHERE EMAIL ='wanjirubecky.rw@gmail.com' 
 
 UPDATE Users SET role = 'admin' WHERE email = 'wanjirubecky.rw@gmail.com'
+
+DROP TABLE Users;
