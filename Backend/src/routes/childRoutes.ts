@@ -6,11 +6,11 @@ import {
   deleteChildRecord,
 } from "../controllers/childController"
 
-const router = express.Router();
+const child_router = express.Router();
 
 
-router.post("/", saveChildRecord);
-router.get("/", getChildRecords);
-router.put("/:babyId", updateChildRecord);
-router.delete("/:babyId", deleteChildRecord);
-export default router;
+child_router.post("/saveChildDetails", saveChildRecord);
+child_router.get("/fetchChildDetails", getChildRecords);
+child_router.put("/update/:babyId", updateChildRecord);
+child_router.delete("/delete/:babyId", deleteChildRecord);
+export default child_router;

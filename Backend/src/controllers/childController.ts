@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import mssql from "mssql";
 import { sqlConfig } from "../configs/sqlConfig";
+import { v4 } from "uuid";
 
 // Save child record
 export const saveChildRecord = async (req: Request, res: Response) => {
@@ -25,7 +26,7 @@ export const saveChildRecord = async (req: Request, res: Response) => {
     } = req.body;
 
     const pool = await mssql.connect(sqlConfig);
-
+    const babyId = v4()
     const result = await pool
       .request()
       .input("babyName", mssql.VarChar, babyName)

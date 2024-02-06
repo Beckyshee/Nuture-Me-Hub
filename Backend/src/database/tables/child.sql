@@ -1,5 +1,5 @@
 CREATE TABLE BabyDetails (
-    babyId INT PRIMARY KEY IDENTITY,
+    babyId VARCHAR(255) PRIMARY KEY,
     babyName VARCHAR(255) NOT NULL,
     dateOfBirth DATE,
     gender VARCHAR(10),
@@ -17,3 +17,4 @@ CREATE TABLE BabyDetails (
     vaccinationRecord VARCHAR(1000),
     growthProgress VARCHAR(1000)
 );
+DROP TABLE BabyDetails;

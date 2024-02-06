@@ -15,11 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteChildRecord = exports.updateChildRecord = exports.getChildRecords = exports.saveChildRecord = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../configs/sqlConfig");
+const uuid_1 = require("uuid");
 // Save child record
 const saveChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { babyName, dateOfBirth, gender, weightAtBirth, heightAtBirth, bloodType, medicalHistory, allergies, pediatricianName, pediatricianPhone, hospitalOfBirth, deliveryType, apgarScore, birthComplications, vaccinationRecord, growthProgress, } = req.body;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        const babyId = (0, uuid_1.v4)();
         const result = yield pool
             .request()
             .input("babyName", mssql_1.default.VarChar, babyName)

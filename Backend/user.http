@@ -74,6 +74,7 @@ GET http://localhost:5400/user/fetchAllUsers/
 Content-Type: application/json
 
 
+
 #Togglefollowuser
 ###
 POST http://localhost:5400/user/users/follow

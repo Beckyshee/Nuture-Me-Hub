@@ -1,5 +1,5 @@
 CREATE TABLE MotherDetails (
-    motherId INT PRIMARY KEY IDENTITY,
+    motherId VARCHAR(255) PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -16,3 +16,6 @@ CREATE TABLE MotherDetails (
     doctorName VARCHAR(255),
     doctorPhone VARCHAR(20)
 );
+SELECT * FROM MotherDetails;
+DROP TABLE MotherDetails;
+USE Nuture;

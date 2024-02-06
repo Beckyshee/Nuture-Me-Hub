@@ -10,10 +10,10 @@ import {
 const mother_router = express.Router();
 
 
-mother_router.post("/mother", saveMotherDetails);
-mother_router.get("/mother", getMotherDetails);
-mother_router.put("/mother/:motherId", updateMotherDetails);
-mother_router.delete("/mother/:motherId", deleteMotherDetails);
+mother_router.post("/saveMotherDetails", saveMotherDetails);
+mother_router.get("/fetchMotherDetails", getMotherDetails);
+mother_router.put("/:motherId", updateMotherDetails);
+mother_router.delete("/:motherId", deleteMotherDetails);
 
 
 

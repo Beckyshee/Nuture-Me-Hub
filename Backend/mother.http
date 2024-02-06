@@ -1,0 +1,57 @@
+###
+# Save Mother Details
+POST http://localhost:5400/mother/saveMotherDetails
+Content-Type: application/json
+
+{
+    "firstName": "sansa",
+    "lastName": "stark",
+    "email": "sansa@example.com",
+    "password": "password123",
+    "dateOfBirth": "1990-05-15",
+    "address": "122 Main St",
+    "phoneNumber": "07123456=078",
+    "bloodType": "A+",
+    "medicalHistory": "None",
+    "allergies": "Peanuts",
+    "emergencyContactName": "Boby Smith",
+    "emergencyContactPhone": "0712345679",
+    "insuranceInformation": "ABC Insurance",
+    "doctorName": "Dr. John Doe",
+    "doctorPhone": "0712045680"
+}
+
+
+###
+# Get All Mother Details
+GET http://localhost:5400/mother/fetchMotherDetails
+
+
+
+###
+# Update Mother Details
+PUT http://localhost:5400/mother/48979b1b-e4f9-435b-99dd-b7ea97891204
+Content-Type: application/json
+
+{
+    "firstName": "Alice",
+    "lastName": "Jones",
+    "email": "alice@example.com",
+    "password": "newpassword123",
+    "dateOfBirth": "1990-05-15",
+    "address": "456 Oak Sttre",
+    "phoneNumber": "0712345678",
+    "bloodType": "B+",
+    "medicalHistory": "new one",
+    "allergies": "None",
+    "emergencyContactName": "John Smith",
+    "emergencyContactPhone": "0712345679",
+    "insuranceInformation": "XYZ Insurance",
+    "doctorName": "Dr. Jane Smith",
+    "doctorPhone": "0712345680"
+}
+
+
+###
+# Delete Mother Details
+DELETE http://localhost:5400/mother/4b7cf840-49e4-437c-a6f4-5a83f2cf7045

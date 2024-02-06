@@ -1,0 +1,66 @@
+-- CREATE OR ALTER PROCEDURE saveChildRecord
+--     @babyId VARCHAR(255)
+--     @BabyName VARCHAR(255),
+--     @DateOfBirth DATE,
+--     @Gender VARCHAR(10),
+--     @WeightAtBirth FLOAT,
+--     @HeightAtBirth FLOAT,
+--     @BloodType VARCHAR(10),
+--     @MedicalHistory VARCHAR(1000),
+--     @Allergies VARCHAR(500),
+--     @PediatricianName VARCHAR(255),
+--     @PediatricianPhone VARCHAR(20),
+--     @HospitalOfBirth VARCHAR(255),
+--     @DeliveryType VARCHAR(100),
+--     @ApgarScore FLOAT,
+--     @BirthComplications VARCHAR(500),
+--     @VaccinationRecord VARCHAR(1000),
+--     @GrowthProgress VARCHAR(1000)
+-- AS
+-- BEGIN
+--     SET NOCOUNT ON;
+
+--     INSERT INTO BabyDetails (
+--         babyId
+--         babyName,
+--         dateOfBirth,
+--         gender,
+--         weightAtBirth,
+--         heightAtBirth,
+--         bloodType,
+--         medicalHistory,
+--         allergies,
+--         pediatricianName,
+--         pediatricianPhone,
+--         hospitalOfBirth,
+--         deliveryType,
+--         apgarScore,
+--         birthComplications,
+--         vaccinationRecord,
+--         growthProgress
+--     )
+--     VALUES (
+--         @babyId
+--         @BabyName,
+--         @DateOfBirth,
+--         @Gender,
+--         @WeightAtBirth,
+--         @HeightAtBirth,
+--         @BloodType,
+--         @MedicalHistory,
+--         @Allergies,
+--         @PediatricianName,
+--         @PediatricianPhone,
+--         @HospitalOfBirth,
+--         @DeliveryType,
+--         @ApgarScore,
+--         @BirthComplications,
+--         @VaccinationRecord,
+--         @GrowthProgress
+--     );
+-- END;
+
+
+
+
+
