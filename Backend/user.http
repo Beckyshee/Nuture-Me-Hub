@@ -22,6 +22,32 @@ Content-Type: application/json
 
 }
 
+
+### Register User
+post http://localhost:5400/user/register
+Content-Type: application/json
+
+{
+    "fullName":"Simon Gatuma",
+    "email":"simongatuma@gmail.com",
+    "password":"12345678",
+    "phone":"0712345777"
+    
+}
+
+
+###
+#login user
+POST http://localhost:5400/user/login
+Content-Type: application/json
+
+{
+    "email":"simongatuma@gmail.com",
+    "password":"12345678"
+
+}
+
+
 ###
 #Soft Delete user
 PUT http://localhost:5400/user/soft-delete/b637bc2a-1d23-41ea-a967-a0839661c7f7
