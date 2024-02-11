@@ -3,8 +3,8 @@ import mssql from "mssql";
 import { sqlConfig } from "../configs/sqlConfig";
 import { v4 } from "uuid";
 
-// Save child record
-export const saveChildRecord = async (req: Request, res: Response) => {
+// Save child details
+export const saveChildDetails = async (req: Request, res: Response) => {
   try {
     const {
       babyName,
@@ -26,9 +26,11 @@ export const saveChildRecord = async (req: Request, res: Response) => {
     } = req.body;
 
     const pool = await mssql.connect(sqlConfig);
-    const babyId = v4()
+    const babyId = v4();
+
     const result = await pool
       .request()
+      .input("babyId", mssql.VarChar, babyId)
       .input("babyName", mssql.VarChar, babyName)
       .input("dateOfBirth", mssql.Date, dateOfBirth)
       .input("gender", mssql.VarChar, gender)
@@ -45,10 +47,10 @@ export const saveChildRecord = async (req: Request, res: Response) => {
       .input("birthComplications", mssql.VarChar, birthComplications)
       .input("vaccinationRecord", mssql.VarChar, vaccinationRecord)
       .input("growthProgress", mssql.VarChar, growthProgress)
-      .execute("saveChildRecord");
+      .execute("saveChildDetails");
 
     return res.status(200).json({
-      message: "Child record saved successfully",
+      message: "Child details saved successfully",
     });
   } catch (error) {
     console.error(error);
@@ -58,17 +60,16 @@ export const saveChildRecord = async (req: Request, res: Response) => {
   }
 };
 
-// fetching child records
-export const getChildRecords = async (req: Request, res: Response) => {
+export const fetchChildDetails = async (req: Request, res: Response) => {
   try {
     const pool = await mssql.connect(sqlConfig);
 
-    const childRecords = await (
-      await pool.request().execute("getChildRecords")
+    const childDetails = await (
+      await pool.request().execute("fetchChildDetails")
     ).recordset;
 
     return res.status(200).json({
-      childRecords: childRecords,
+      childDetails: childDetails,
     });
   } catch (error) {
     console.error(error);
@@ -78,10 +79,11 @@ export const getChildRecords = async (req: Request, res: Response) => {
   }
 };
 
-// Updating child records
-export const updateChildRecord = async (req: Request, res: Response) => {
+// Update child details
+export const updateChildDetails = async (req: Request, res: Response) => {
   try {
     const {
+      babyId,
       babyName,
       dateOfBirth,
       gender,
@@ -99,54 +101,32 @@ export const updateChildRecord = async (req: Request, res: Response) => {
       vaccinationRecord,
       growthProgress,
     } = req.body;
-
-    const pool = await mssql.connect(sqlConfig);
-
-    const result = await pool
-      .request()
-      .input("babyName", mssql.VarChar, babyName)
-      .input("dateOfBirth", mssql.Date, dateOfBirth)
-      .input("gender", mssql.VarChar, gender)
-      .input("weightAtBirth", mssql.Float, weightAtBirth)
-      .input("heightAtBirth", mssql.Float, heightAtBirth)
-      .input("bloodType", mssql.VarChar, bloodType)
-      .input("medicalHistory", mssql.VarChar, medicalHistory)
-      .input("allergies", mssql.VarChar, allergies)
-      .input("pediatricianName", mssql.VarChar, pediatricianName)
-      .input("pediatricianPhone", mssql.VarChar, pediatricianPhone)
-      .input("hospitalOfBirth", mssql.VarChar, hospitalOfBirth)
-      .input("deliveryType", mssql.VarChar, deliveryType)
-      .input("apgarScore", mssql.Float, apgarScore)
-      .input("birthComplications", mssql.VarChar, birthComplications)
-      .input("vaccinationRecord", mssql.VarChar, vaccinationRecord)
-      .input("growthProgress", mssql.VarChar, growthProgress)
-      .execute("updateChildRecord");
-
-    return res.status(200).json({
-      message: "Child record updated successfully",
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      error: "Internal Server Error",
-    });
-  }
-};
-
-// Deleting child records
-export const deleteChildRecord = async (req: Request, res: Response) => {
-  try {
-    const { babyId } = req.params;
 
     const pool = await mssql.connect(sqlConfig);
 
     const result = await pool
       .request()
       .input("babyId", mssql.VarChar, babyId)
-      .execute("deleteChildRecord");
+      .input("babyName", mssql.VarChar, babyName)
+      .input("dateOfBirth", mssql.Date, dateOfBirth)
+      .input("gender", mssql.VarChar, gender)
+      .input("weightAtBirth", mssql.Float, weightAtBirth)
+      .input("heightAtBirth", mssql.Float, heightAtBirth)
+      .input("bloodType", mssql.VarChar, bloodType)
+      .input("medicalHistory", mssql.VarChar, medicalHistory)
+      .input("allergies", mssql.VarChar, allergies)
+      .input("pediatricianName", mssql.VarChar, pediatricianName)
+      .input("pediatricianPhone", mssql.VarChar, pediatricianPhone)
+      .input("hospitalOfBirth", mssql.VarChar, hospitalOfBirth)
+      .input("deliveryType", mssql.VarChar, deliveryType)
+      .input("apgarScore", mssql.Float, apgarScore)
+      .input("birthComplications", mssql.VarChar, birthComplications)
+      .input("vaccinationRecord", mssql.VarChar, vaccinationRecord)
+      .input("growthProgress", mssql.VarChar, growthProgress)
+      .execute("updateChildDetails");
 
     return res.status(200).json({
-      message: "Child record deleted successfully",
+      message: "Child details updated successfully",
     });
   } catch (error) {
     console.error(error);
@@ -155,3 +135,6 @@ export const deleteChildRecord = async (req: Request, res: Response) => {
     });
   }
 };
+
+// Delete child details
+// export const deleteChildDetails;

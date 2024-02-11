@@ -12,18 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteChildRecord = exports.updateChildRecord = exports.getChildRecords = exports.saveChildRecord = void 0;
+exports.updateChildDetails = exports.fetchChildDetails = exports.saveChildDetails = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../configs/sqlConfig");
 const uuid_1 = require("uuid");
-// Save child record
-const saveChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// Save child details
+const saveChildDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { babyName, dateOfBirth, gender, weightAtBirth, heightAtBirth, bloodType, medicalHistory, allergies, pediatricianName, pediatricianPhone, hospitalOfBirth, deliveryType, apgarScore, birthComplications, vaccinationRecord, growthProgress, } = req.body;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const babyId = (0, uuid_1.v4)();
         const result = yield pool
             .request()
+            .input("babyId", mssql_1.default.VarChar, babyId)
             .input("babyName", mssql_1.default.VarChar, babyName)
             .input("dateOfBirth", mssql_1.default.Date, dateOfBirth)
             .input("gender", mssql_1.default.VarChar, gender)
@@ -40,9 +41,9 @@ const saveChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function
             .input("birthComplications", mssql_1.default.VarChar, birthComplications)
             .input("vaccinationRecord", mssql_1.default.VarChar, vaccinationRecord)
             .input("growthProgress", mssql_1.default.VarChar, growthProgress)
-            .execute("saveChildRecord");
+            .execute("saveChildDetails");
         return res.status(200).json({
-            message: "Child record saved successfully",
+            message: "Child details saved successfully",
         });
     }
     catch (error) {
@@ -52,14 +53,13 @@ const saveChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 });
-exports.saveChildRecord = saveChildRecord;
-// fetching child records
-const getChildRecords = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.saveChildDetails = saveChildDetails;
+const fetchChildDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        const childRecords = yield (yield pool.request().execute("getChildRecords")).recordset;
+        const childDetails = yield (yield pool.request().execute("fetchChildDetails")).recordset;
         return res.status(200).json({
-            childRecords: childRecords,
+            childDetails: childDetails,
         });
     }
     catch (error) {
@@ -69,54 +69,34 @@ const getChildRecords = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 });
-exports.getChildRecords = getChildRecords;
-// Updating child records
-const updateChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.fetchChildDetails = fetchChildDetails;
+// Update child details
+const updateChildDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { babyName, dateOfBirth, gender, weightAtBirth, heightAtBirth, bloodType, medicalHistory, allergies, pediatricianName, pediatricianPhone, hospitalOfBirth, deliveryType, apgarScore, birthComplications, vaccinationRecord, growthProgress, } = req.body;
-        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        const result = yield pool
-            .request()
-            .input("babyName", mssql_1.default.VarChar, babyName)
-            .input("dateOfBirth", mssql_1.default.Date, dateOfBirth)
-            .input("gender", mssql_1.default.VarChar, gender)
-            .input("weightAtBirth", mssql_1.default.Float, weightAtBirth)
-            .input("heightAtBirth", mssql_1.default.Float, heightAtBirth)
-            .input("bloodType", mssql_1.default.VarChar, bloodType)
-            .input("medicalHistory", mssql_1.default.VarChar, medicalHistory)
-            .input("allergies", mssql_1.default.VarChar, allergies)
-            .input("pediatricianName", mssql_1.default.VarChar, pediatricianName)
-            .input("pediatricianPhone", mssql_1.default.VarChar, pediatricianPhone)
-            .input("hospitalOfBirth", mssql_1.default.VarChar, hospitalOfBirth)
-            .input("deliveryType", mssql_1.default.VarChar, deliveryType)
-            .input("apgarScore", mssql_1.default.Float, apgarScore)
-            .input("birthComplications", mssql_1.default.VarChar, birthComplications)
-            .input("vaccinationRecord", mssql_1.default.VarChar, vaccinationRecord)
-            .input("growthProgress", mssql_1.default.VarChar, growthProgress)
-            .execute("updateChildRecord");
-        return res.status(200).json({
-            message: "Child record updated successfully",
-        });
-    }
-    catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            error: "Internal Server Error",
-        });
-    }
-});
-exports.updateChildRecord = updateChildRecord;
-// Deleting child records
-const deleteChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { babyId } = req.params;
+        const { babyId, babyName, dateOfBirth, gender, weightAtBirth, heightAtBirth, bloodType, medicalHistory, allergies, pediatricianName, pediatricianPhone, hospitalOfBirth, deliveryType, apgarScore, birthComplications, vaccinationRecord, growthProgress, } = req.body;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const result = yield pool
             .request()
             .input("babyId", mssql_1.default.VarChar, babyId)
-            .execute("deleteChildRecord");
+            .input("babyName", mssql_1.default.VarChar, babyName)
+            .input("dateOfBirth", mssql_1.default.Date, dateOfBirth)
+            .input("gender", mssql_1.default.VarChar, gender)
+            .input("weightAtBirth", mssql_1.default.Float, weightAtBirth)
+            .input("heightAtBirth", mssql_1.default.Float, heightAtBirth)
+            .input("bloodType", mssql_1.default.VarChar, bloodType)
+            .input("medicalHistory", mssql_1.default.VarChar, medicalHistory)
+            .input("allergies", mssql_1.default.VarChar, allergies)
+            .input("pediatricianName", mssql_1.default.VarChar, pediatricianName)
+            .input("pediatricianPhone", mssql_1.default.VarChar, pediatricianPhone)
+            .input("hospitalOfBirth", mssql_1.default.VarChar, hospitalOfBirth)
+            .input("deliveryType", mssql_1.default.VarChar, deliveryType)
+            .input("apgarScore", mssql_1.default.Float, apgarScore)
+            .input("birthComplications", mssql_1.default.VarChar, birthComplications)
+            .input("vaccinationRecord", mssql_1.default.VarChar, vaccinationRecord)
+            .input("growthProgress", mssql_1.default.VarChar, growthProgress)
+            .execute("updateChildDetails");
         return res.status(200).json({
-            message: "Child record deleted successfully",
+            message: "Child details updated successfully",
         });
     }
     catch (error) {
@@ -126,4 +106,6 @@ const deleteChildRecord = (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
 });
-exports.deleteChildRecord = deleteChildRecord;
+exports.updateChildDetails = updateChildDetails;
+// Delete child details
+// export const deleteChildDetails;

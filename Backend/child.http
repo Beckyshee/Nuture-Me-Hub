@@ -1,0 +1,55 @@
+###
+# Save Child Details
+POST http://localhost:5400/child/saveChildDetails
+Content-Type: application/json
+
+{
+    "babyName": "John",
+    "dateOfBirth": "2023-01-01",
+    "gender": "Male",
+    "weightAtBirth": 3.5,
+    "heightAtBirth": 50,
+    "bloodType": "A+",
+    "medicalHistory": "None",
+    "allergies": "None",
+    "pediatricianName": "Dr. Smith",
+    "pediatricianPhone": "0712345678",
+    "hospitalOfBirth": "City Hospital",
+    "deliveryType": "Normal",
+    "apgarScore": 9,
+    "birthComplications": "None",
+    "vaccinationRecord": "Up to date",
+    "growthProgress": "Healthy"
+}
+
+###
+# Get All Child Details
+GET http://localhost:5400/child/fetchChildDetails
+
+###
+# Update Child Details
+PUT http://localhost:5400/child/update/1
+Content-Type: application/json
+
+{
+    "babyName": "John",
+    "dateOfBirth": "2023-01-01",
+    "gender": "Male",
+    "weightAtBirth": 3.5,
+    "heightAtBirth": 50,
+    "bloodType": "B+",
+    "medicalHistory": "yes",
+    "allergies": "None",
+    "pediatricianName": "Dr. Smith",
+    "pediatricianPhone": "0712345678",
+    "hospitalOfBirth": "City Hospital",
+    "deliveryType": "Normal",
+    "apgarScore": 9,
+    "birthComplications": "None",
+    "vaccinationRecord": "Up to date",
+    "growthProgress": "Healthy"
+}
+
+###
+# Delete Child Details
+DELETE http://localhost:5400/child/delete/1

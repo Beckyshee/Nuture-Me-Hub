@@ -114,5 +114,15 @@ BEGIN
         motherId = @motherId;
 END;
 
+CREATE OR ALTER PROCEDURE getMotherDetailById
+    @motherId VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT * FROM MotherDetails WHERE motherId = @motherId;
+END;
+
+
 
 
